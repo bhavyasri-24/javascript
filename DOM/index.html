@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM learning</title>
+  <style>
+    #para1::first-letter{
+      font-size: 30px;
+    }
+    #paraspan{
+      background-color: yellow;
+      padding-right: 10px;
+      padding-left: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">DOM (Document Object Model)</h1>
+  <ul>
+    <li style="color: red; font-size: 20px;">
+      Window
+      <ul>
+        <li style="color: black;">
+          Document
+          <ul>
+            <li style="color: blueviolet;">
+              HTML
+              <ul style="color: green;">
+                <li>Head</li>
+                <li>Body</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <p class="para" id="para1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae est nemo nulla sint dolorum laborum quasi voluptatum cumque, sequi, molestiae numquam nam eius adipisci. Asperiores natus sequi non sapiente minus.</p>
+
+  <p class="para" id="para2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam repudiandae, quis dolor enim magni ipsum in quas dolorem exercitationem dolore assumenda dicta maiores rem earum accusamus numquam libero delectus dolorum?
+  Fugit dolore inventore ipsa soluta labore nulla ut. Amet eveniet ea a, fugit, quod illum quae odio accusantium eaque consequatur in deleniti quo dolorum fugiat maiores. Voluptates suscipit provident pariatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad inventore consequuntur numquam quasi modi debitis id nihil, a enim accusantium illo vero quisquam dicta doloribus incidunt! Esse adipisci pariatur doloremque.</p>
+
+  <p class="para" id="para3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus culpa harum quo corporis, saepe repellat quaerat ex magnam nam ipsam nihil, voluptatum aperiam itaque iure cumque omnis et architecto laboriosam! <span id="paraspan">helloooooo</span></p>
+</body>
+</html>

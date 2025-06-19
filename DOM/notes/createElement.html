@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="createEle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts. gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?  family=Caveat:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container"></div>
+    <div class="buttonContainer">
+      <button onclick="addElementFirst()" id="add">Add New Note</button>
+    </div>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/2e43f4d366.js"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    const container = document.querySelector(".container");
+    const noteColors = [
+      "#AFBCCF",
+      "#FFAFA3",
+      "#80CAFF",
+      "#FFC470",
+      "#FFADE7",
+      "#E6E6E6",
+      "#FFD966",
+      "#D9B8FF",
+      "#85E0A3",
+    ];
+
+    // const noteColors = ["#F4EDFF"];
+    let i = 0;
+
+    function optContainerPos(noteContainer, optionsContainer){
+      const rect = noteContainer.getBoundingClientRect();
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+      optionsContainer.style.left = `${rect.right + scrollLeft + 10}px`;
+      optionsContainer.style.top = `${rect.top + scrollTop}px`;
+    }
+
+    function showNotePopup(initialValue = "", onSaveCallBack) {
+      const popUp = document.createElement("div");
+      popUp.classList.add("pop");
+
+      const inputField = document.createElement("textarea");
+      const save = document.createElement("button");
+      const discard = document.createElement("button");
+      const buttonField = document.createElement("div");
+      const warning = document.createElement("p");
+      inputField.value = initialValue;
+      inputField.placeholder = "Write here..";
+      buttonField.className = "button-field";
+      inputField.className = "input-field";
+      warning.className = "warning";
+      warning.innerText = "⚠️ Content must be less than 500 characters.";
+
+      save.innerText = "Save";
+      save.className = "save";
+
+      discard.innerText = "Discard";
+      discard.className = "discard";
+
+      inputField.addEventListener("input", () => {
+        if (inputField.value.length > 500) {
+          warning.style.display = "block";
+        } else {
+          warning.style.display = "none";
+        }
+      });
+
+      discard.onclick = () => {
+        document.body.removeChild(popUp);
+      };
+
+      save.onclick = () => {
+        if (inputField.value.length > 500) {
+          warning.style.display = "block";
+          return;
+        }
+        if (inputField.value.trim() !== "") {
+          onSaveCallBack(inputField.value.trim());
+        }
+        document.body.removeChild(popUp);
+      };
+
+      popUp.appendChild(inputField);
+      popUp.appendChild(warning);
+      popUp.appendChild(buttonField);
+
+      buttonField.appendChild(discard);
+      buttonField.appendChild(save);
+
+      document.body.appendChild(popUp);
+    }
+
+    function addElementFirst() {
+      const color = noteColors[i % noteColors.length];
+      showNotePopup("", (noteText) => {
+        i++;
+        addElement(noteText, color);
+      });
+    }
+
+    function addElement(item, color) {
+      const noteContainer = document.createElement("div");
+
+      noteContainer.style.backgroundColor = color;
+      noteContainer.classList.add("note-container");
+      noteContainer.id = `C${i}`;
+
+      let myDate = new Date();
+
+      const noteContent = document.createTextNode(item);
+      const noteHeading = document.createTextNode(myDate.toLocaleString());
+
+      const noteTextContainer = document.createElement("div");
+      const noteHeadingContainer = document.createElement("div");
+
+      noteTextContainer.className = "note-text-container";
+      noteHeadingContainer.className = "note-heading-container";
+
+      const delIcon = document.createElement("i");
+      delIcon.classList.add("fa-solid", "fa-trash", "del-icon");
+      const editIcon = document.createElement("i");
+      editIcon.classList.add("fa-solid", "fa-pen-to-square", "edit-icon");
+
+      const optionsContainer = document.createElement("div");
+      optionsContainer.classList.add("option-container");
+
+      optionsContainer.appendChild(delIcon);
+      optionsContainer.appendChild(editIcon);
+
+      noteContainer.appendChild(noteTextContainer);
+      noteTextContainer.appendChild(noteContent);
+      noteContainer.appendChild(noteHeadingContainer);
+      noteHeadingContainer.appendChild(noteHeading);
+
+      document.body.appendChild(optionsContainer);
+
+      container.appendChild(noteContainer);
+
+      let hideTimeout;
+
+      noteContainer.addEventListener("mouseenter", () => {
+        clearTimeout(hideTimeout);
+        optContainerPos(noteContainer, optionsContainer);
+        optionsContainer.style.display = "flex";
+      });
+
+      noteContainer.addEventListener("mouseleave", () => {
+        hideTimeout = setTimeout(() => {
+          optionsContainer.style.display = "none";
+        }, 150);
+      });
+
+      optionsContainer.addEventListener("mouseenter", () => {
+        clearTimeout(hideTimeout);
+        optContainerPos(noteContainer, optionsContainer);
+        optionsContainer.style.display = "flex";
+      });
+
+      optionsContainer.addEventListener("mouseleave", () => {
+        hideTimeout = setTimeout(() => {
+          optionsContainer.style.display = "none";
+        }, 150);
+      });
+
+      delIcon.addEventListener("click", () => {
+        container.removeChild(noteContainer);
+        document.body.removeChild(optionsContainer);
+      });
+
+      editIcon.addEventListener("click", () => {
+        showNotePopup(noteTextContainer.innerText, (updatedText) => {
+          noteTextContainer.innerText = updatedText;
+        });
+      });
+    }
+  </script>
+</html>
