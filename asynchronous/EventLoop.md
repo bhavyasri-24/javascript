@@ -1,11 +1,11 @@
 ## Event Loop in Javascript
 
-Javascript is **synchronous** i.e. code is executed line by line. But it **can also work asynchronously**. 
+--- Javascript is **synchronous** i.e. code is executed line by line. But it **can also work asynchronously**. 
 
-Here asynchronously means the the code that takes times. For example, getting data from external APIs. Some may get data fast, some may take time. So for this we use fetch/then or async/await or XMLHTTPRequest.
+--- Here asynchronously means the the code that takes times. For example, getting data from external APIs. Some may get data fast, some may take time. So for this we use fetch/then or async/await or XMLHTTPRequest.
 
 
-Javascript is light weight, functionalities like fetch, setTimeOut, setInterval, DOM related like querySelector, eventListeners, canvas related, audio related.. all these come from web APIs like fetch API, timer API etc. In case of node JS we have http, file related, etc in node API. 
+--- Javascript is light weight, functionalities like fetch, setTimeOut, setInterval, DOM related like querySelector, eventListeners, canvas related, audio related.. all these come from web APIs like fetch API, timer API etc. In case of node JS we have http, file related, etc in node API. 
 
 
 
@@ -47,7 +47,7 @@ This code gives 1432 as result
 
 
 
-*Below is strcutured explaination of what is present on the top by chatGPT*
+**Below is strcutured explaination of what is present on the top by chatGPT**
 
 # 🧠 Event Loop in JavaScript
 
