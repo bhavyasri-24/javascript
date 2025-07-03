@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XY</title>
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+    }
+    body{
+      display: flex;
+      flex-direction: column;
+    }
+    #div1{
+      height: 100vh;
+      width: 100%;
+      background-color: grey;
+    }
+    #div2{
+      height: 100vh;
+      width: 100%;
+      background-color: black;
+    }
+    #cursorBox {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+  z-index: 999;
+}
+  </style>
+</head>
+<body>
+  <div id="div1"></div>
+  <div id="div2"></div>
+  <div id="cursorBox">
+    <ul>
+      <li id="screen"></li>
+      <li id="page"></li>
+      <li id="offset"></li>
+      <li id="movement"></li>
+      <li id="layer"></li>
+      <li id="client"></li>
+    </ul>
+  </div>
+</body>
+</html>
+<script>
+  let text = document.getElementById("text");
+  let cursorBox = document.getElementById("cursorBox");
+  const screenval = document.querySelector("#screen");
+  const pageval = document.querySelector("#page");
+  const offsetval = document.querySelector("#offset");
+  const layerval = document.querySelector("#layer");
+  const clientval = document.querySelector("#client");
+  const movementval = document.querySelector("#movement");
+  document.addEventListener('mousemove', (e)=>{
+    let x = e.pageX;
+    let y = e.pageY;
+
+    cursorBox.style.top = y + "px";
+    cursorBox.style.left = x + "px";
+
+    screenval.innerText = `screen: ${e.screenX}, ${e.screenY}`;
+    pageval.innerText = `page: ${e.pageX}, ${e.pageY}`;
+    offsetval.innerText = `offset: ${e.offsetX}, ${e.offsetY}`;
+    layerval.innerText = `layer: ${e.layerX}, ${e.layerY}`;
+    clientval.innerText = `client: ${e.clientX}, ${e.clientY}`;
+    screenval.innerText = `screen: ${e.screenX}, ${e.screenY}`;
+    movementval.innerText = `movement: ${e.movementX}, ${e.movementY}`;
+  })
+</script>

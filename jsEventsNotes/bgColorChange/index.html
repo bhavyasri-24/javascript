@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background changer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </body>
+</html>
+<script>
+  const colors = ["#FFEDF3", "#ADEED9", "#56DFCF", "#0ABAB5"];
+  const start = document.querySelector("#start");
+  const stop = document.querySelector("#stop");
+  let i = 0;
+  let intervalId = null;
+
+  function changeColor() {
+    if (!intervalId){
+      intervalId = setInterval(() => {
+      document.body.style.backgroundColor = colors[i % colors.length];
+      i++;
+    }, 1000);
+    }
+  }
+
+  start.addEventListener('click', changeColor);
+  stop.addEventListener('click', ()=>{
+    clearInterval(intervalId);
+    intervalId = null;
+  })
+
+  
+</script>
