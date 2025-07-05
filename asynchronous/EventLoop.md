@@ -49,6 +49,8 @@ This code gives 1432 as result
 
 **Below is strcutured explaination of what is present on the top by chatGPT**
 
+
+
 # 🧠 Event Loop in JavaScript
 
 JavaScript is **single-threaded** and **synchronous** by default, meaning it executes code **line by line**.
