@@ -45,7 +45,7 @@ console.log("4");
 
 This code gives 1432 as result
 
-
+*******************************************************************************************************************
 
 **Below is strcutured explaination of what is present on the top by chatGPT**
 
